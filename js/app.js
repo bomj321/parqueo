@@ -9,6 +9,15 @@ function configurar(){
  
       //Inicia validacion
       //
+    if(parseInt(cantidadC_parqueo) > parseInt(cantidadE_parqueo))
+      {
+      $("#mensaje_configuracion").addClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
+      $('#mensaje_configuracion').text('Las Columnas no pueden ser mayores a los espacios');
+      document.getElementById('cantidadC_parqueo').focus();
+      return false;
+      }
+
+
      if (isNaN(valor_parqueo) || valor_parqueo==="")
       {
       $("#mensaje_configuracion").addClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
@@ -41,13 +50,7 @@ function configurar(){
       return false;
       }
 
-    /*  if (cantidadC_parqueo > cantidadE_parqueo)
-      {
-      $("#mensaje_configuracion").addClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
-      $('#mensaje_configuracion').text('Las Columnas no pueden ser mayores a los espacios');
-      document.getElementById('cantidadC_parqueo').focus();
-      return false;
-      }*/
+     
 
     
 
@@ -80,5 +83,115 @@ function configurar(){
 }
 
 
+
+
 /************************************************FORMULARIO******************************************/
 
+
+
+/*******************************BORRAR CONFIGURACION***************************************************/
+function borrar_configuracion(){
+
+  var opcion = confirm("Alerta se Borrarán todos los datos del sistema. ¿Estas seguro?");
+    if (opcion == true) {
+       $.ajax({          
+          url:"../ajax/borrar_configuracion.php",
+          type:"POST",
+          beforeSend: function() {
+               toastr.options.progressBar = true;
+               toastr.warning('Borrando Configuración Espere...');
+         },         
+          success: function(data){ 
+            toastr.options.progressBar = false;
+            setTimeout(function () {
+                  toastr.success('Configuracion Borrada!!!');
+                }, 1000);         
+                  //LimpiarVentaDeServicios();
+               setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+
+
+
+                        
+          },error: function () {
+            toastr.options.progressBar = false;
+            toastr.error('Ocurrio un Error, contacta con el Administrador...');
+      }
+      });
+}
+
+
+  }
+
+
+
+
+  
+
+/*******************************BORRAR CONFIGURACION***************************************************/
+
+
+/*******************************BORRAR CONFIGURACION***************************************************/
+/*function apartar(){
+  var parametros = new FormData($("#apartar_parqueo")[0]);
+      $.ajax({
+          data: parametros,
+          url:"../ajax/imprimir_venta.php",
+          type:"POST",
+          contentType:false,
+          processData:false,
+          beforeSend: function() {
+                $("#mensaje_apartado").removeClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
+                $("#mensaje_apartado").addClass('alert alert-warning alert-dismissable text-center mensaje_alerta_configuracion');
+                $('#mensaje_apartado').text('Apartando Espacio Espere');
+         },         
+          success: function(data){ 
+            $("#mensaje_apartado").removeClass('alert alert-warning alert-dismissable text-center mensaje_alerta_configuracion');
+            $("#mensaje_apartado").addClass('alert alert-success alert-dismissable text-center mensaje_alerta_configuracion');
+            $('#mensaje_apartado').text('Espacio Apartado');
+            setTimeout(function () {
+            window.location.href = '../paginas_principales/generar_parqueo.php';
+          }, 1000);             
+          },error: function () {
+            $("#mensaje_apartado").removeClass('alert alert-success alert-dismissable text-center mensaje_alerta_configuracion');
+            $("#mensaje_apartado").addClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
+            $('#mensaje_apartado').text('Ha Ocurrido un Error');
+
+      }
+      });
+}*/
+
+/*******************************BORRAR CONFIGURACION***************************************************/
+
+
+/***************************INICIAR PARQUEO*************************************/
+
+   function parquear() {
+            var apartar_espacio=document.getElementById('apartar_espacio').value;
+            var tipo_automotor=document.getElementById('tipo').value;
+            var matricula=document.getElementById('matricula').value;
+            var tipo_marca=document.getElementById('tipo_marca').value;
+
+            window.open("../ajax/imprimir_venta.php?apartar_espacio="+apartar_espacio+"&tipo_automotor="+tipo_automotor+"&matricula="+matricula+"&marca="+tipo_marca);
+            setTimeout(function () {
+              location.href = "../paginas_principales/generar_parqueo.php";
+          }, 1000);      
+      
+    }
+     
+/***************************INICIAR PARQUEO*************************************/
+
+
+/***************************FINALIZAR PARQUEO*************************************/
+
+   function parquear_fin(id_ventas) {
+            
+            window.open("../ajax/imprimir_venta_fin.php?id_ventas="+id_ventas);
+            setTimeout(function () {
+              location.href = "../paginas_principales/generar_parqueo.php";
+          }, 1000);      
+      
+    }
+     
+/***************************FINALIZAR PARQUEO*************************************/

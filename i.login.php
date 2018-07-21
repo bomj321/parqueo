@@ -34,7 +34,7 @@ if($rowi['clave'] == $pass){
  $permisos=$rowi['privilegios'];
 if($permisos == 1){
 echo '<script language="javascript">
- window.location.href="paginas_principales/inicio.php";</script>'; 
+ window.location.href="paginas_principales/estado_parqueo.php";</script>'; 
 }
 elseif(empty($permisos)){
 
