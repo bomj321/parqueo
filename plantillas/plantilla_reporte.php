@@ -155,7 +155,7 @@ $resul = mysqli_query($con,$sql_parqueo);
           <!-- /top tiles -->
        <!--CONTENIDO-->
        <div class="col-md-1 col-sm-1 col-xs-1 col-md-offset-10 col-sm-offset-10 col-xs-offset-3">
-       		<a href="../reporte_ventas/rpt.php" type="button" class="btn btn-success">IMPRIMIR</a>
+       		<a href="../reporte_ventas/rpt.php" type="button" target="_blank" class="btn btn-success">IMPRIMIR</a>
 		</div>
    
           <table id="example_reporte1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" style="width: 100%;"> 

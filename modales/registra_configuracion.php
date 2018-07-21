@@ -20,14 +20,6 @@
 
                              </div>
 
-
-                             <div class="form-group col-md-12 col-xs-12">
-		                              <label class="control-label">Direcci&oacute;n</label>
-		                                <input class="form-control" type="text" placeholder="Direcci&oacute;n del Parqueo" id="direccion_parqueo" required="true" name="direccion">
-
-                             </div>
-
-
                              <div class="form-group col-md-12 col-xs-12">
 		                              <label class="control-label">C&eacute;dula</label>
 		                                <input class="form-control" type="text" placeholder="C&eacute;dula" id="cedula_parqueo" required="true" name="cedula">
@@ -38,6 +30,12 @@
                              <div class="form-group col-md-12 col-xs-12">
 		                              <label class="control-label">Tel&eacute;fono</label>
 		                                <input class="form-control" type="text" placeholder="Tel&eacute;fono" id="telefono_parqueo" required="true" name="telefono">
+
+                             </div>
+
+                              <div class="form-group col-md-12 col-xs-12">
+                                  <label class="control-label">Direcci&oacute;n</label>
+                                    <input class="form-control" type="text" placeholder="Direcci&oacute;n del Parqueo" id="direccion_parqueo" required="true" name="direccion">
 
                              </div>
 

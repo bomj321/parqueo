@@ -92,77 +92,109 @@ function configurar(){
 /*******************************BORRAR CONFIGURACION***************************************************/
 function borrar_configuracion(){
 
-  var opcion = confirm("Alerta se Borrarán todos los datos del sistema. ¿Estas seguro?");
-    if (opcion == true) {
-       $.ajax({          
-          url:"../ajax/borrar_configuracion.php",
-          type:"POST",
-          beforeSend: function() {
-               toastr.options.progressBar = true;
-               toastr.warning('Borrando Configuración Espere...');
-         },         
-          success: function(data){ 
-            toastr.options.progressBar = false;
-            setTimeout(function () {
-                  toastr.success('Configuracion Borrada!!!');
-                }, 1000);         
-                  //LimpiarVentaDeServicios();
-               setTimeout(function () {
-                            location.reload();
-                        }, 2000);
+
+  var clave_borrar=document.getElementById('clave_borrar').value;
+
+      if (clave_borrar!='5050' )
+      {
+      toastr.error('Clave Incorrecta!!!');
+      document.getElementById('clave_borrar').focus();
+      return false;
+      }else{//ELSE 
+           var opcion = confirm("Alerta se Borrarán todos los datos del sistema. ¿Estas seguro?");
+              if (opcion == true) {//IF DEL CONFIRM 
+                 $.ajax({          
+                    url:"../ajax/borrar_configuracion.php",
+                    type:"POST",
+                    beforeSend: function() {
+                         toastr.options.progressBar = true;
+                         toastr.warning('Borrando Configuración Espere...');
+                   },         
+                    success: function(data){ 
+                      toastr.options.progressBar = false;
+                      setTimeout(function () {
+                            toastr.success('Configuración Borrada!!!');
+                          }, 1000);         
+                         setTimeout(function () {
+                                      location.reload();
+                                  }, 2000);
 
 
 
-                        
-          },error: function () {
-            toastr.options.progressBar = false;
-            toastr.error('Ocurrio un Error, contacta con el Administrador...');
-      }
-      });
-}
+                                  
+                    },error: function () {
+                      toastr.options.progressBar = false;
+                      toastr.error('Ocurrio un Error, contacta con el Administrador...');
+                }
+                });
+          }//IF DEL CONFIRM    
+      
+      }//ELSE 
 
+  }
+/*******************************BORRAR CONFIGURACION***************************************************/
+
+/*******************************EDITAR INFORMACION***************************************************/
+
+  function editar_informacion(){
+
+
+  var clave_editar=document.getElementById('clave_editar').value;
+
+      if (clave_editar!='5050' )
+      {
+      toastr.error('Clave Incorrecta!!!');
+      document.getElementById('clave_editar').focus();
+      return false;
+      }else{//ELSE 
+        window.location.href = '../paginas_principales/editar_informacion.php';   
+             
+      
+      }//ELSE 
 
   }
 
+/*******************************EDITAR INFORMACION***************************************************/
 
 
 
   
 
-/*******************************BORRAR CONFIGURACION***************************************************/
 
-
-/*******************************BORRAR CONFIGURACION***************************************************/
-/*function apartar(){
-  var parametros = new FormData($("#apartar_parqueo")[0]);
+/*EDITAR INFORMACION*/
+function editar_informacion_form(){ 
+  var parametros = new FormData($("#form_editar_informacion")[0]);
       $.ajax({
           data: parametros,
-          url:"../ajax/imprimir_venta.php",
+          url:"../ajax/editar_informacion.php",
           type:"POST",
           contentType:false,
           processData:false,
-          beforeSend: function() {
-                $("#mensaje_apartado").removeClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
-                $("#mensaje_apartado").addClass('alert alert-warning alert-dismissable text-center mensaje_alerta_configuracion');
-                $('#mensaje_apartado').text('Apartando Espacio Espere');
-         },         
-          success: function(data){ 
-            $("#mensaje_apartado").removeClass('alert alert-warning alert-dismissable text-center mensaje_alerta_configuracion');
-            $("#mensaje_apartado").addClass('alert alert-success alert-dismissable text-center mensaje_alerta_configuracion');
-            $('#mensaje_apartado').text('Espacio Apartado');
+          beforesend: function(){
+            toastr.options.progressBar = true;
+            toastr.warning('Editando Espere...');
+          },
+          success: function(data){            
+            toastr.options.progressBar = false;
             setTimeout(function () {
-            window.location.href = '../paginas_principales/generar_parqueo.php';
-          }, 1000);             
+            toastr.success('Información Editada!!!');
+          }, 1000);         
+            //LimpiarVentaDeServicios();
+          setTimeout(function () {
+              window.location.href = '../paginas_principales/configuracion.php';
+          }, 2000);
+
+                        
           },error: function () {
-            $("#mensaje_apartado").removeClass('alert alert-success alert-dismissable text-center mensaje_alerta_configuracion');
-            $("#mensaje_apartado").addClass('alert alert-danger alert-dismissable text-center mensaje_alerta_configuracion');
-            $('#mensaje_apartado').text('Ha Ocurrido un Error');
-
-      }
+                      toastr.options.progressBar = false;
+                      toastr.error('Ocurrio un Error, contacta con el Administrador...');
+                }
       });
-}*/
+}
+/*EDITAR INFORMACION*/
 
-/*******************************BORRAR CONFIGURACION***************************************************/
+
+
 
 
 /***************************INICIAR PARQUEO*************************************/
